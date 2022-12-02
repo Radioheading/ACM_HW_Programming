@@ -11,7 +11,7 @@
 
 #include <string>
 #include <map>
-
+#include <unordered_map>
 /*
  * Class: EvalState
  * ----------------
@@ -27,7 +27,6 @@
 class EvalState {
 
 public:
-
 /*
  * Constructor: EvalState
  * Usage: EvalState state;
@@ -77,7 +76,7 @@ public:
 
 private:
 
-    std::map<std::string, int> symbolTable;
+    std::unordered_map<std::string, int> symbolTable;
 
 };
 

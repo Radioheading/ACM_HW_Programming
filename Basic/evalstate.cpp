@@ -14,13 +14,9 @@
 
 /* Implementation of the EvalState class */
 
-EvalState::EvalState() {
-    /* Empty */
-}
+EvalState::EvalState() = default;
 
-EvalState::~EvalState() {
-    /* Empty */
-}
+EvalState::~EvalState() = default;
 
 void EvalState::setValue(std::string var, int value) {
     if(isDefined(var)) symbolTable[var] = value;

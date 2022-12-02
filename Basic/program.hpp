@@ -13,7 +13,7 @@
 #include <set>
 #include <unordered_map>
 #include "statement.hpp"
-
+#include <map>
 
 class Statement;
 
@@ -32,7 +32,7 @@ class Statement;
 
 class Program {
 
-public:
+ public:
 
 /*
  * Constructor: Program
@@ -41,7 +41,7 @@ public:
  * Constructs an empty BASIC program.
  */
 
-    Program();
+  Program();
 
 /*
  * Destructor: ~Program
@@ -50,7 +50,7 @@ public:
  * Frees any heap storage associated with the program.
  */
 
-    ~Program();
+  ~Program();
 
 /*
  * Method: clear
@@ -59,7 +59,7 @@ public:
  * Removes all lines from the program.
  */
 
-    void clear();
+  void clear();
 
 /*
  * Method: addSourceLine
@@ -72,7 +72,7 @@ public:
  * program in the correct sequence.
  */
 
-    void addSourceLine(int lineNumber, const std::string& line);
+  void addSourceLine(int lineNumber, const std::string &line);
 
 /*
  * Method: removeSourceLine
@@ -84,7 +84,7 @@ public:
  * performing any action.
  */
 
-    void removeSourceLine(int lineNumber);
+  void removeSourceLine(int lineNumber);
 
 /*
  * Method: getSourceLine
@@ -94,7 +94,7 @@ public:
  * If no such line exists, this method returns the empty string.
  */
 
-    std::string getSourceLine(int lineNumber);
+  std::string getSourceLine(int lineNumber);
 
 /*
  * Method: setParsedStatement
@@ -106,7 +106,7 @@ public:
  * exists, the memory for that statement is reclaimed.
  */
 
-    void setParsedStatement(int lineNumber, Statement *stmt);
+  void setParsedStatement(int lineNumber, Statement *stmt);
 
 /*
  * Method: getParsedStatement
@@ -117,7 +117,7 @@ public:
  * returns NULL.
  */
 
-    Statement *getParsedStatement(int lineNumber);
+  Statement *getParsedStatement(int lineNumber);
 
 /*
  * Method: getFirstLineNumber
@@ -127,7 +127,7 @@ public:
  * If the program has no lines, this method returns -1.
  */
 
-    int getFirstLineNumber();
+  int getFirstLineNumber();
 
 /*
  * Method: getNextLineNumber
@@ -138,15 +138,20 @@ public:
  * in the program.  If no more lines remain, this method returns -1.
  */
 
-    int getNextLineNumber(int lineNumber);
+  int getNextLineNumber(int lineNumber);
 
-    //more func to add
-    //todo
+  //more func to add
+  //todo
 
-private:
+ public:
 
-    // Fill this in with whatever types and instance variables you need
-    //todo
+  // Fill this in with whatever types and instance variables you need
+  struct line {
+    std::string all_information;
+    std::vector<std::string> tokens;
+  };
+  std::map<int,line> line_information;
+  bool LineNumberCheck(int checker);
 };
 
 #endif

@@ -21,7 +21,6 @@
 #include"parser.hpp"
 #include "Utils/error.hpp"
 #include "Utils/strlib.hpp"
-
 class Program;
 
 /*
@@ -36,8 +35,8 @@ class Program;
 
 class Statement {
 
-public:
-
+ public:
+  std::string info;
 /*
  * Constructor: Statement
  * ----------------------
@@ -45,7 +44,7 @@ public:
  * its own constructor.
  */
 
-    Statement();
+  Statement();
 
 /*
  * Destructor: ~Statement
@@ -56,7 +55,7 @@ public:
  * destructor is called when deleting a statement.
  */
 
-    virtual ~Statement();
+  virtual ~Statement();
 
 /*
  * Method: execute
@@ -69,10 +68,9 @@ public:
  * controlling the operation of the interpreter.
  */
 
-    virtual void execute(EvalState &state, Program &program) = 0;
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner) = 0;
 
 };
-
 
 /*
  * The remainder of this file must consists of subclass
@@ -84,5 +82,39 @@ public:
  * an Expression object), the class implementation must also
  * specify its own destructor method to free that memory.
  */
-
+class let : public Statement {
+ public:
+  let(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class print : public Statement {
+ public:
+  print(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class rem : public Statement {
+ public:
+  rem(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class End : public Statement {
+ public:
+  End(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class Goto : public Statement {
+ public:
+  Goto(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class input : public Statement {
+ public:
+  input(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
+class If : public Statement {
+ public:
+  If(std::string info);
+  virtual void execute(EvalState &state, Program &program, TokenScanner &scanner);
+};
 #endif

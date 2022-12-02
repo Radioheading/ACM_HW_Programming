@@ -10,54 +10,59 @@
 
 #include "program.hpp"
 
-
-
 Program::Program() = default;
 
 Program::~Program() = default;
 
 void Program::clear() {
-    // Replace this stub with your own code
-    //todo
+  line_information.clear();
 }
 
 void Program::addSourceLine(int lineNumber, const std::string &line) {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  line_information[lineNumber].all_information = line;
 }
 
 void Program::removeSourceLine(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  line_information.erase(lineNumber);
+
 }
 
 std::string Program::getSourceLine(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  return line_information[lineNumber].all_information;
 }
 
 void Program::setParsedStatement(int lineNumber, Statement *stmt) {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  //todo
 }
 
 //void Program::removeSourceLine(int lineNumber) {
 
 Statement *Program::getParsedStatement(int lineNumber) {
-   // Replace this stub with your own code
-   //todo
+  // Replace this stub with your own code
+  //todo
 }
 
 int Program::getFirstLineNumber() {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  return line_information.begin()->first;
 }
 
 int Program::getNextLineNumber(int lineNumber) {
-    // Replace this stub with your own code
-    //todo
+  // Replace this stub with your own code
+  auto iter = line_information.find(lineNumber);
+  ++iter;
+  if (iter != line_information.end())
+    return iter->first;
+  else return -1;
 }
-
+bool Program::LineNumberCheck(int checker) { // whether a line number is valid
+  auto iter = line_information.find(checker);
+  return (iter != line_information.end());
+}
 //more func to add
 //todo
 
